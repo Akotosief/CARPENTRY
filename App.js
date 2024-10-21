@@ -128,7 +128,7 @@ const Dashboard = ({ route, navigation }) => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <ImageBackground
-        source={require('./assets/white.jpeg')}
+        source={require('./assets/white.jpg')}
         resizeMode="cover"
         style={{ flex: 1 }}
       >
@@ -157,11 +157,11 @@ const Dashboard = ({ route, navigation }) => {
           </View>
           </ScrollView>
           <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginHorizontal: 20, marginBottom: 20, marginVertical: 10 }}>
-            <TouchableOpacity onPress={() => navigation.navigate('App')} style={{ backgroundColor: '#2c3e50', borderRadius: 10, padding: 10, flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+            <TouchableOpacity onPress={() => navigation.navigate('App')} style={{ backgroundColor: '#C4D7FF', borderRadius: 10, padding: 10, flex: 1, justifyContent: 'center', alignItems: 'center',  borderColor: '#000000' }}>
               <Text style={{ color: '#fff', fontSize: 14 }}>Back to login</Text>
             </TouchableOpacity>
             <View style={{ width: 20 }} />
-            <TouchableOpacity onPress={() => navigation.navigate('AboutUs')} style={{ backgroundColor: '#2c3e50', borderRadius: 10, padding: 10, flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+            <TouchableOpacity onPress={() => navigation.navigate('AboutUs')} style={{ backgroundColor: '#C4D7FF', borderRadius: 10, padding: 10, flex: 1, justifyContent: 'center', alignItems: 'center',  borderColor: '#000000' }}>
               <Text style={{ color: '#fff', fontSize: 14 }}>About us</Text>
             </TouchableOpacity>
           </View>
@@ -177,7 +177,7 @@ const AboutUs = ({ navigation }) => {
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
-      backgroundColor: '#1a202c',
+      backgroundColor: '#fff',
     }}>
       <StatusBar backgroundColor="#000" barStyle="light-content" />
       <View style={{ position: 'absolute', top: 20, left: 20, right: 20, backgroundColor: 'rgba(0, 0, 0, 0.5)', borderRadius: 10, padding: 5 }}>
@@ -244,10 +244,10 @@ const AboutUs = ({ navigation }) => {
         </View>
       </ScrollView>
       <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', position: 'absolute', bottom: 20, left: 20, right: 20 }}>
-        <TouchableOpacity onPress={() => navigation.goBack()} style={{ backgroundColor: '#2c3e50', borderRadius: 10, padding: 10, flex: 1, marginRight: 10 }}>
+        <TouchableOpacity onPress={() => navigation.goBack()} style={{ backgroundColor: '#C4D7FF', borderRadius: 10, padding: 10, flex: 1, marginRight: 10 }}>
           <Text style={{ color: '#fff', fontSize: 14, textAlign: 'center' }}>Back to dashboard</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate('App')} style={{ backgroundColor: '#2c3e50', borderRadius: 10, padding: 10, flex: 1 }}>
+        <TouchableOpacity onPress={() => navigation.navigate('App')} style={{ backgroundColor: '#C4D7FF', borderRadius: 10, padding: 10, flex: 1 }}>
           <Text style={{ color: '#fff', fontSize: 14, textAlign: 'center' }}>Back to login</Text>
         </TouchableOpacity>
       </View>

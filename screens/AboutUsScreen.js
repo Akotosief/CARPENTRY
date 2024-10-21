@@ -7,7 +7,7 @@ function AboutScreen() {
   const navigation = useNavigation();
 
   return (
-    <ImageBackground source={require('../assets/bg.jpg')} style={styles.container}>
+    <ImageBackground source={require('../assets/white.jpg')} style={styles.container}>
       <StatusBar backgroundColor="#000" barStyle="light-content" />
       <View style={styles.header}>
         <Text style={styles.headerText}>About us</Text>
@@ -148,7 +148,7 @@ const styles = StyleSheet.create({
     right: 20,
   },
   footerButton: {
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    backgroundColor: '#C4D7FE',
     borderRadius: 10,
     padding: 10,
     flex: 1,
