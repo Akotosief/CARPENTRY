@@ -25,6 +25,7 @@ const App = () => {
       setPassword('');
     }
   };
+  
 
   const handleSignUpPress = () => {
     Alert.alert('Success', 'Sign up successful!');
@@ -37,28 +38,29 @@ const App = () => {
         <View style={styles.content}>
           <View style={[styles.section, { marginBottom: 50 }]}>
             <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-              <Image source={require('./assets/logo.png')} style={{ width: 150, height: 150, borderRadius: 75, marginRight: 10, marginBottom: 10 }} />
-              <Text style={[styles.header, { alignSelf: 'center', textAlign: 'center', marginBottom: 50, fontSize: 40, fontWeight: 'bold', color: '#fff', textShadowColor: 'rgba(0, 0, 0, 0.75)', textShadowOffset: { width: 2, height: 2 }, textShadowRadius: 10 }]}>Physical Education</Text>
+              <Image source={require('./assets/hacksaw.gif')} style={{ position: 'absolute', width: '40%', height: '160%',bottom: 60, left: 60, marginBottom: 10, alignSelf: 'left', flex: 0 }}
+        repeat={true} />
+              <Text style={[styles.header, { alignSelf: 'center', textAlign: 'center', marginBottom: 10, fontSize: 35, fontWeight: 'bold', color: '#000000', textShadowColor: 'rgba(0, 0, 0, 0.75)', textShadowOffset: { width: 1, height: 1 }, textShadowRadius: 10 }]}>TLE CARPENTRY</Text>
             </View>
           </View>
           <View style={styles.section}>
-            <TextInput placeholder="Username" value={username} onChangeText={(text) => setUsername(text)} style={[styles.input, { width: 250, textAlign: 'center', backgroundColor: '#2c3e50', borderRadius: 10, borderWidth: 1, borderColor: '#1a202c', color: '#fff' }]} />
+            <TextInput placeholder="Username" value={username} onChangeText={(text) => setUsername(text)} style={[styles.input, { width: 260, height: 40, borderWidth: 1, textAlign: 'center',margintop: 10, backgroundColor: 'transparent', borderRadius: 10, borderWidth: 1, borderColor: '#000000', color: '#000000', paddingTop: 10 }]} />
           </View>
           <View style={styles.section}>
-            <TextInput placeholder="Password" secureTextEntry={true} value={password} onChangeText={(text) => setPassword(text)} style={[styles.input, { width: 250, textAlign: 'center', backgroundColor: '#2c3e50', borderRadius: 10, borderWidth: 1, borderColor: '#1a202c', color: '#fff' }]} />
+            <TextInput placeholder="Password" secureTextEntry={true} value={password} onChangeText={(text) => setPassword(text)} style={[styles.input, { width: 260, height: 40, borderWidth: 1, textAlign: 'center', marginTop: 20, backgroundColor: 'transparent', borderRadius: 10, borderWidth: 1, borderColor: '#000000', color: '#000000' }]} />
           </View>
           <View style={[styles.section, { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginHorizontal: 20, marginTop: 20 }]}>
-            <TouchableOpacity onPress={handleLoginPress} style={[styles.button, { backgroundColor: '#2c3e50', borderColor: '#1a202c' }]}>
+            <TouchableOpacity onPress={handleLoginPress} style={[styles.button, { backgroundColor: '#C4D7FF', borderColor: '#1a202c' }]}>
               <Text style={{ color: '#fff', fontSize: 16 }}>Log in</Text>
             </TouchableOpacity>
             <View style={{ width: 20 }} />
-            <TouchableOpacity onPress={handleSignUpPress} style={[styles.button, { backgroundColor: '#2c3e50', borderColor: '#1a202c' }]}>
+            <TouchableOpacity onPress={handleSignUpPress} style={[styles.button, { backgroundColor: '#C4D7FF', borderColor: '#1a202c' }]}>
               <Text style={{ color: '#fff', fontSize: 16 }}>Sign up</Text>
             </TouchableOpacity>
           </View>
         </View>
-        <View style={[{ position: 'absolute', bottom: 0, left: 0, right: 0, alignItems: 'center', justifyContent: 'center', marginBottom: 20, zIndex: 0 }, Platform.OS === 'android' && { opacity: 0.5 }]}>
-          <Text style={{color: '#fff', fontSize: 11 }}> Copyright  @2024 Physical Education App</Text>
+        <View style={[{ position: 'absolute', bottom: 100, left: 0, right: 0, alignItems: 'center', justifyContent: 'center', marginBottom: 10, zIndex: 0 }, Platform.OS === 'android' && { opacity: 0.5 }]}>
+          <Text style={{color: '#0000', fontSize: 11 }}> Copyright  @2024 TLE Carpentry App</Text>
         </View>
       </KeyboardAvoidingView>
     </SafeAreaView>
@@ -68,15 +70,15 @@ const App = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#2c3e50',
+    backgroundColor: '#fff',
   },
   content: {
-    flex: 1,
+    flex: 0.8,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#1a202c',
+    backgroundColor: '#fff',
     borderRadius: 10,
-    padding: 20,
+    paddingTop: 150,
   },
   section: {
     marginBottom: 20,
@@ -84,13 +86,13 @@ const styles = StyleSheet.create({
   },
   input: {
     height: 40,
-    padding: 10,
     color: '#fff',
     textAlign: 'center',
     backgroundColor: '#2c3e50',
   },
   button: {
-    width: 120,
+    width: 100,
+    height: 40,
     borderRadius: 10,
     borderWidth: 1,
     borderColor: '#1a202c',
@@ -126,27 +128,30 @@ const Dashboard = ({ route, navigation }) => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <ImageBackground
-        source={require('./assets/bg.jpg')}
+        source={require('./assets/white.jpeg')}
         resizeMode="cover"
         style={{ flex: 1 }}
       >
         
-          <View style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)', padding: 20, margin: 20, borderRadius: 10 }}>
-            <Text style={{ color: '#fff', fontSize: 24, fontWeight: 'bold', textAlign: 'left' }}>Welcome {username}!</Text>
+          <View style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)', padding: 10, margin: 20, borderRadius: 10 }}>
+            <Text style={{ color: '#fff', fontSize: 24, fontWeight: 'bold', textAlign: 'center' }}>Welcome Learners!</Text>
           </View>
           <ScrollView style={{ flex: 1 }}>
           <View style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)', padding: 20, margin: 20, borderRadius: 10 }}>
-            <Text style={{ color: '#fff', fontSize: 16, textAlign: 'center' }}>
+          <Image source={require('./assets/measuring-tape.gif')} style={{ width: 75, height: 75, borderRadius: 37.5, marginRight: 10, marginBottom: 10, alignSelf: 'center' }} />
+            <Text style={{ color: '#fff', fontSize: 16, textAlign: 'justify' }}>
               Physical education is a vital part of our lives. It helps us develop our physical skills, achieve our fitness goals, and live a healthy lifestyle. It is also important for our mental well-being, as it helps us reduce stress and anxiety, and improve our mood. Furthermore, regular physical activity can help us increase our energy levels, reduce the risk of chronic diseases, and even improve our sleep quality. So, it is essential to make physical education a priority in our lives.
             </Text>
           </View>
           <View style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)', padding: 20, margin: 20, borderRadius: 10 }}>
-            <Text style={{ color: '#fff', fontSize: 16, textAlign: 'center' }}>
+          <Image source={require('./assets/screw.gif')} style={{ width: 75, height: 75, borderRadius: 37.5, marginRight: 10, marginBottom: 10, alignSelf: 'center' }} />
+            <Text style={{ color: '#fff', fontSize: 16, textAlign: 'justify' }}>
               In addition to these benefits, physical education also helps us build our social skills, as it provides us with the opportunity to interact with other people, make new friends, and develop our communication skills. It also helps us learn important values such as teamwork, discipline, and sportsmanship.
             </Text>
           </View>
           <View style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)', padding: 20, margin: 20, borderRadius: 10 }}>
-            <Text style={{ color: '#fff', fontSize: 16, textAlign: 'center' }}>
+          <Image source={require('./assets/circular-saw.gif')} style={{ width: 75, height: 75, borderRadius: 37.5, marginRight: 10, marginBottom: 10, alignSelf: 'center' }} />
+            <Text style={{ color: '#fff', fontSize: 16, textAlign: 'justify' }}>
               Furthermore, physical education can also help us develop our cognitive skills, as it requires us to think strategically, make quick decisions, and solve problems. It also helps us build our self-confidence, as it provides us with the opportunity to challenge ourselves, set goals, and achieve them. So, it is essential to make physical education a priority in our lives.
             </Text>
           </View>
