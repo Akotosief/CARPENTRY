@@ -7,7 +7,7 @@ function AboutScreen() {
   const navigation = useNavigation();
 
   return (
-    <ImageBackground source={require('../assets/white.jpg')} style={styles.container}>
+    <ImageBackground source={require('../assets/set.png')} style={styles.container}>
       <StatusBar backgroundColor="#000" barStyle="light-content" />
       <View style={styles.header}>
         <Text style={styles.headerText}>About us</Text>
@@ -17,7 +17,7 @@ function AboutScreen() {
           {sections.map((section, index) => (
             <View key={index} style={styles.sectionContainer}>
               <Text style={styles.sectionTitle}>{section.title}</Text>
-              <Image source={require('../assets/logo.png')} style={styles.image} />
+              <Image source={require('../assets/hacksaw.gif')} style={styles.image} />
               <Text style={styles.sectionText}>{section.text}</Text>
             </View>
           ))}
@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
     top: 20,
     left: 20,
     right: 20,
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    backgroundColor: 'rgba(140, 26, 98, 0.33) ',
     borderRadius: 10,
     padding: 5,
   },
@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   sectionContainer: {
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    backgroundColor: 'rgba(140, 26, 98, 0.33)',
     padding: 20,
     margin: 20,
     borderRadius: 10,
@@ -149,10 +149,12 @@ const styles = StyleSheet.create({
   },
   footerButton: {
     backgroundColor: '#C4D7FE',
+    borderColor: '#1a202c',
     borderRadius: 10,
     padding: 10,
     flex: 1,
     marginRight: 10,
+
   },
   footerButtonText: {
     color: '#fff',
