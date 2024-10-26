@@ -10,7 +10,8 @@ import { View, Text, TextInput, StyleSheet, SafeAreaView, Dimensions, StatusBar,
 import LoginScreen from './screens/LoginScreen.js';
 import HomeScreen from './screens/HomeScreen.js';
 import AboutScreen from './screens/AboutUsScreen.js';
-
+import DetailsScreen from './screens/DetailsScreen.js';
+import GetStartedScreen from './screens/GetStartedScreen';
 
 
 const Stack = createStackNavigator();
@@ -39,7 +40,7 @@ const App = () => {
   return (
       <SafeAreaView style={{ flex: 1 }}>
       <ImageBackground
-        source={require('./assets/set.png')}
+        source={require('./assets/white.jpg')}
         resizeMode="cover"
         style={{ flex: 1, position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}
       ></ImageBackground>
@@ -124,16 +125,19 @@ const styles = StyleSheet.create({
 const AppContainer = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator
-        screenOptions={{
-          headerShown: false,
-        }}
-      >
-       <Stack.Screen name="Login" component={LoginScreen} />
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="AboutUs" component={AboutScreen} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <Stack.Navigator
+      initialRouteName="GetStarted" // Set initial route to GetStarted
+      screenOptions={{
+        headerShown: false, // Hide header for all screens
+      }}
+    >
+      <Stack.Screen name="GetStarted" component={GetStartedScreen} />
+      <Stack.Screen name="Login" component={LoginScreen} />
+      <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Screen name="AboutUs" component={AboutScreen} />
+      <Stack.Screen name="Details" component={DetailsScreen} />
+    </Stack.Navigator>
+  </NavigationContainer>
   );
 };
 const Dashboard = ({ route, navigation }) => {
@@ -142,7 +146,7 @@ const Dashboard = ({ route, navigation }) => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <ImageBackground
-        source={require('./assets/set.png')}
+        source={require('./assets/white.jpg')}
         resizeMode="cover"
         style={{ flex: 1 }}
       >
