@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, TouchableOpacity, Text, TextInput, StyleSheet, Alert, SafeAreaView, KeyboardAvoidingView } from "react-native";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../firebaseConfig";
+import { View, TouchableOpacity, Text, TextInput, StyleSheet, Alert, Platform, SafeAreaView, KeyboardAvoidingView, Image } from "react-native";
 import { useFonts } from "expo-font";
 import Ionicons from "react-native-vector-icons/Ionicons";
 
@@ -12,7 +10,7 @@ const SignupScreen = ({ navigation }) => {
 
   const [fontsLoaded, error] = useFonts({
     "Roboto-Medium": require("../assets/fonts/Roboto-Medium.ttf"),
-    "Smothy-Bubble": require("../assets/fonts/Smothy-Bubble.ttf"), 
+    "Smothy-Bubble": require("../assets/fonts/Smothy-Bubble.ttf"),
   });
 
   useEffect(() => {
@@ -21,13 +19,8 @@ const SignupScreen = ({ navigation }) => {
     }
   }, [error]);
 
-  const isFormValid = () => {
-    const isEmailValid = email.includes("@") && email.length > 5;
-    const isPasswordValid = password.length >= 8;
-    const passwordsMatch = password === confirmPassword;
-    
-    return isEmailValid && isPasswordValid && passwordsMatch;
-  };
+  const isFormValid = () =>
+    email.includes("@") && password === confirmPassword && password.length >= 8;
 
   const handleSignup = async () => {
     if (!isFormValid()) {
@@ -35,61 +28,62 @@ const SignupScreen = ({ navigation }) => {
         "Try again",
         "Please enter a valid email and matching passwords with at least 8 characters"
       );
-      return; // Exit the function if the form is not valid
+      return;
     }
 
     try {
-      // Proceed with signup using Firebase Authentication
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-      const user = userCredential.user;
-      console.log("User signed up successfully:", user);
+      await createUserWithEmailAndPassword(auth, email, password);
       Alert.alert("Success", "Account created successfully");
       setEmail("");
       setPassword("");
       setConfirmPassword("");
-      navigation.navigate("HomeScreen");
+      navigation.navigate("LoginScreen");
     } catch (error) {
-      Alert.alert("Error", `Error creating user: ${error.message}`); // Show Firebase error message
+      Alert.alert("Error", `Error creating user: ${error.message}`);
     }
   };
 
   if (!fontsLoaded) {
-    return null; // Or show a loading indicator
+    return null;
   }
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: '#FFFFFF' }}>
-      <KeyboardAvoidingView behavior="padding" style={styles.keyboardAvoidingView}>
+      <KeyboardAvoidingView behavior={Platform.OS === "android" ? "padding" : "height"} style={styles.keyboardAvoidingView}>
         <View style={styles.content}>
+          {/* Back Arrow */}
           <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
             <Ionicons name="arrow-back" size={24} color="#000" />
           </TouchableOpacity>
-          <Text style={styles.header}>TLE CARPENTRY</Text>
+          <Text style={styles.header}>SIGN UP</Text>
+          <View style={styles.gifContainer}>
+            <Image source={require('../assets/hacksaw.gif')} style={styles.gif} />
+          </View>
           <View style={styles.contentContainer}>
             <View style={styles.section}>
-              <TextInput
-                placeholder="Email"
-                value={email}
-                onChangeText={setEmail}
-                style={styles.input}
+              <TextInput 
+                placeholder="Email" 
+                value={email} 
+                onChangeText={setEmail} 
+                style={styles.input} 
               />
             </View>
             <View style={styles.section}>
-              <TextInput
-                placeholder="Password"
-                secureTextEntry
-                value={password}
-                onChangeText={setPassword}
-                style={styles.input}
+              <TextInput 
+                placeholder="Password" 
+                secureTextEntry 
+                value={password} 
+                onChangeText={setPassword} 
+                style={styles.input} 
               />
             </View>
             <View style={styles.section}>
-              <TextInput
-                placeholder="Confirm Password"
-                secureTextEntry
-                value={confirmPassword}
-                onChangeText={setConfirmPassword}
-                style={styles.input}
+              <TextInput 
+                placeholder="Confirm Password" 
+                secureTextEntry 
+                value={confirmPassword} 
+                onChangeText={setConfirmPassword} 
+                style={styles.input} 
               />
             </View>
             <View style={styles.buttonContainer}>
@@ -100,6 +94,9 @@ const SignupScreen = ({ navigation }) => {
                 <Text style={styles.buttonText}>Return</Text>
               </TouchableOpacity>
             </View>
+          </View>
+          <View style={styles.imageContainer}>
+            <Image source={require('../assets/1234yy.png')} style={styles.image} />
           </View>
           <View style={styles.footer}>
             <Text style={styles.footerText}>Copyright @2024 TLE Carpentry App</Text>
@@ -128,10 +125,20 @@ const styles = StyleSheet.create({
   },
   header: {
     color: '#000',
+    marginTop: 20,
     fontSize: 26,
     fontWeight: 'bold',
     textAlign: 'center',
-    marginBottom: 20,
+    paddingTop: 20,
+    bottom: 30,
+  },
+  gifContainer: {
+    alignItems: 'center',
+    marginBottom: 10,
+  },
+  gif: {
+    width: 100,
+    height: 100,
   },
   contentContainer: {
     backgroundColor: 'rgba(255, 255, 255, 0.7)',
@@ -141,6 +148,8 @@ const styles = StyleSheet.create({
     padding: 20,
     width: '80%',
     alignItems: 'center',
+    marginTop: 13,
+    bottom: 20,
   },
   section: {
     marginBottom: 20,
@@ -174,6 +183,14 @@ const styles = StyleSheet.create({
   buttonText: {
     color: '#fff',
     fontSize: 16,
+  },
+  imageContainer: {
+    alignItems: 'center',
+    marginTop: 20,
+  },
+  image: {
+    width: 170,
+    height: 170,
   },
   footer: {
     position: 'absolute',

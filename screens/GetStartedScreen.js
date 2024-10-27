@@ -12,10 +12,7 @@ const GetStartedScreen = () => {
         source={require('../assets/white.jpg')} // Background image
         style={styles.background}
       >
-        {/* Back Arrow */}
-        <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
-          <Ionicons name="arrow-back" size={24} color="#000" />
-        </TouchableOpacity>
+        
 
         <View style={styles.content}>
           <Text style={styles.title}>TLE CARPENTRY</Text>

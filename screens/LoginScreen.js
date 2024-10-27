@@ -1,83 +1,57 @@
-import React, { useState, useEffect } from 'react';
-import { ImageBackground, View, TouchableOpacity, Text, TextInput, StyleSheet, Alert, SafeAreaView, KeyboardAvoidingView } from 'react-native';
+import React, { useState } from 'react';
+import { View, Image, TouchableOpacity, Text, TextInput, StyleSheet, Alert, Platform, SafeAreaView, KeyboardAvoidingView } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../firebaseConfig";
-import { useFonts } from "expo-font";
 
-const LoginScreen = ({ navigation }) => {
+function LoginScreen({ navigation }) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [fontsLoaded, error] = useFonts({
-       "Roboto-Medium": require("../assets/fonts/Roboto-Medium.ttf"),
-        "Smothy-Bubble": require("../assets/fonts/Smothy-Bubble.ttf"), 
-    });
 
-    useEffect(() => {
-        if (error) {
-            console.error("Error loading fonts:", error);
-        }
-    }, [error]);
-
-    const handleLoginPress = async () => {
+    const handleLoginPress = () => {
         if (username === '' || password === '') {
             Alert.alert('Error', 'Please enter your username and password.');
-            return;
-        }
-        try {
-            const userCredential = await signInWithEmailAndPassword(auth, username, password);
-            const user = userCredential.user;
-            console.log("User logged in successfully:", user);
-            navigation.navigate("HomeScreen");
+        } else {
+            // Navigate to the Home screen; replace 'Home' with your actual home screen name
+            navigation.navigate('Home', { username, password });
             setUsername('');
             setPassword('');
-        } catch (error) {
-            Alert.alert("Error", "Invalid credentials");
         }
     };
 
-    const handleSignUpPress = () => {
-        navigation.navigate("SignupScreen");
-    };
-
-    if (!fontsLoaded) {
-        return null; // Show a loading indicator or nothing until fonts are loaded
-    }
-
     return (
-        <ImageBackground
-            style={styles.container}
-            source={require("../assets/white.jpg")}
-        >
-            <KeyboardAvoidingView behavior="padding" style={styles.keyboardAvoidingView}>
+        <SafeAreaView style={{ flex: 1, backgroundColor: '#FFFFFF' }}>
+            <KeyboardAvoidingView behavior={Platform.OS === "android" ? "padding" : "height"} style={styles.keyboardAvoidingView}>
                 <View style={styles.content}>
+                    {/* Back Arrow */}
                     <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
                         <Ionicons name="arrow-back" size={24} color="#000" />
                     </TouchableOpacity>
                     <Text style={styles.header}>TLE CARPENTRY</Text>
+                    <View style={styles.gifContainer}>
+                        <Image source={require('../assets/hacksaw.gif')} style={styles.gif} />
+                    </View>
                     <View style={styles.contentContainer}>
                         <View style={styles.section}>
-                            <TextInput
-                                placeholder="Username"
-                                value={username}
-                                onChangeText={setUsername}
-                                style={styles.input}
+                            <TextInput 
+                                placeholder="Username" 
+                                value={username} 
+                                onChangeText={setUsername} 
+                                style={styles.input} 
                             />
                         </View>
                         <View style={styles.section}>
-                            <TextInput
-                                placeholder="Password"
-                                secureTextEntry
-                                value={password}
-                                onChangeText={setPassword}
-                                style={styles.input}
+                            <TextInput 
+                                placeholder="Password" 
+                                secureTextEntry 
+                                value={password} 
+                                onChangeText={setPassword} 
+                                style={styles.input} 
                             />
                         </View>
                         <View style={styles.buttonContainer}>
                             <TouchableOpacity onPress={handleLoginPress} style={styles.button}>
                                 <Text style={styles.buttonText}>Log in</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity onPress={handleSignUpPress} style={styles.button}>
+                            <TouchableOpacity onPress={() => navigation.navigate('SignupScreen')} style={styles.button}>
                                 <Text style={styles.buttonText}>Sign up</Text>
                             </TouchableOpacity>
                         </View>
@@ -85,23 +59,21 @@ const LoginScreen = ({ navigation }) => {
                             <Text style={styles.linkText}>Forgot Password?</Text>
                         </TouchableOpacity>
                     </View>
+                    <View style={styles.imageContainer}>
+                        <Image source={require('../assets/1234yy.png')} style={styles.image} />
+                    </View>
                     <View style={styles.footer}>
                         <Text style={styles.footerText}>Copyright @2024 TLE Carpentry App</Text>
                     </View>
                 </View>
             </KeyboardAvoidingView>
-        </ImageBackground>
+        </SafeAreaView>
     );
 };
 
 const styles = StyleSheet.create({
     keyboardAvoidingView: {
         flex: 1,
-    },
-    container: {
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
     },
     content: {
         flex: 1,
@@ -117,11 +89,20 @@ const styles = StyleSheet.create({
     },
     header: {
         color: '#000',
+        marginTop: 20,
         fontSize: 26,
         fontWeight: 'bold',
         textAlign: 'center',
-        marginBottom: 20,
-        fontFamily: "HanumanBlack",
+        paddingTop: 120,
+        bottom: 30,
+    },
+    gifContainer: {
+        alignItems: 'center',
+        marginBottom: 10,
+    },
+    gif: {
+        width: 100,
+        height: 100,
     },
     contentContainer: {
         backgroundColor: 'rgba(255, 255, 255, 0.7)',
@@ -131,6 +112,8 @@ const styles = StyleSheet.create({
         padding: 20,
         width: '80%',
         alignItems: 'center',
+        marginTop: 13,
+        bottom: 20,
     },
     section: {
         marginBottom: 20,
@@ -145,7 +128,6 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         textAlign: 'center',
         backgroundColor: 'transparent',
-        fontFamily: "HanumanBlack",
     },
     buttonContainer: {
         flexDirection: 'row',
@@ -165,12 +147,19 @@ const styles = StyleSheet.create({
     buttonText: {
         color: '#fff',
         fontSize: 16,
-        fontFamily: "PlayfairDisplayBlack",
     },
     linkText: {
         color: '#007BFF',
         marginTop: 10,
         fontSize: 16,
+    },
+    imageContainer: {
+        alignItems: 'center',
+        marginTop: 20,
+    },
+    image: {
+        width: 170,
+        height: 170,
     },
     footer: {
         position: 'absolute',
