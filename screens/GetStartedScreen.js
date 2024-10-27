@@ -1,10 +1,20 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, Image, StyleSheet, SafeAreaView, ImageBackground } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { Ionicons } from '@expo/vector-icons'; // Import Ionicons for the back arrow
+import { useFonts } from 'expo-font'; // Import useFonts from expo-font
 
 const GetStartedScreen = () => {
   const navigation = useNavigation();
+
+  // Load custom fonts
+  const [fontsLoaded] = useFonts({
+    "Roboto-Medium": require("../assets/fonts/Roboto-Medium.ttf"),
+    "Nostalgic": require("../assets/fonts/Nostalgic.ttf"),
+  });
+
+  if (!fontsLoaded) {
+    return null; // Render nothing until fonts are loaded
+  }
 
   return (
     <SafeAreaView style={styles.container}>
@@ -12,8 +22,6 @@ const GetStartedScreen = () => {
         source={require('../assets/white.jpg')} // Background image
         style={styles.background}
       >
-        
-
         <View style={styles.content}>
           <Text style={styles.title}>TLE CARPENTRY</Text>
           <Image 
@@ -28,10 +36,13 @@ const GetStartedScreen = () => {
 
           <TouchableOpacity 
             style={styles.button} 
-            onPress={() => navigation.navigate('Login')}
+            onPress={() => navigation.navigate('LoginScreen')}
           >
             <Text style={styles.buttonText}>Get Started</Text>
           </TouchableOpacity>
+        </View>
+        <View style={styles.footer}>
+          <Text style={styles.footerText}>Copyright @2024 TLE Carpentry App</Text>
         </View>
       </ImageBackground>
     </SafeAreaView>
@@ -45,50 +56,61 @@ const styles = StyleSheet.create({
   background: {
     flex: 1,
     resizeMode: 'cover',
-    justifyContent: 'center', // Center items vertically
-    alignItems: 'center',      // Center items horizontally
-  },
-  backButton: {
-    position: 'absolute',
-    top: 20,
-    left: 20,
-    padding: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   content: {
-    alignItems: 'center', // Center content horizontally
-    justifyContent: 'center', // Center content vertically
-    padding: 20, // Add padding if needed
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 20,
   },
   centerImage: {
-    width: 200, // Adjust width as needed
-    height: 200, // Adjust height as needed
+    width: 250,
+    height: 250,
     marginBottom: 20,
   },
   title: {
     fontSize: 32,
     fontWeight: 'bold',
     color: '#000',
+    bottom: 50,
     marginBottom: 10,
     textAlign: 'center',
+    fontFamily: 'Nostalgic', // Use custom font for title
   },
   description: {
     fontSize: 16,
     color: '#333',
     textAlign: 'center',
     marginVertical: 15,
-    paddingHorizontal: 20, // Optional padding for better readability
+    paddingHorizontal: 20,
+    fontFamily: 'Roboto-Medium', // Use custom font for description
   },
   button: {
-    backgroundColor: '#B7B7B7',
+    backgroundColor: '#C4D7FE',
     borderRadius: 10,
     padding: 15,
-    width: '80%',
+    width: 300,
+    top: 50,
     alignItems: 'center',
+    borderColor: '#00000',
+    borderWidth: 1,
   },
   buttonText: {
-    color: '#3C3D37',
+    color: '#ffffff',
     fontSize: 18,
     fontWeight: 'bold',
+  },
+  footer: {
+    position: 'absolute',
+    bottom: 30,
+    left: 0,
+    right: 0,
+    alignItems: 'center',
+  },
+  footerText: {
+    color: '#000',
+    fontSize: 14,
   },
 });
 

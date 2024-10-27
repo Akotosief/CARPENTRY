@@ -7,12 +7,12 @@ const AboutUsScreen = () => {
   const [selectedMemberIndex, setSelectedMemberIndex] = useState(null);
 
   const members = [
-    { name: 'MONTALBO', description: 'UX DESIGN PRINCIPLES', image: require('../assets/sushi.jpg') },
-    { name: 'PANTALEON', description: 'LAZY LINKING PROTOTYPE', image: require('../assets/sushi.jpg') },
-    { name: 'QUILBIO', description: '60-30-10', image: require('../assets/sushi.jpg') },
-    { name: 'QUINDOZA', description: 'TYPOGRAPHY', image: require('../assets/sushi.jpg') },
-    { name: 'SECUYA', description: 'COLOR THEORY', image: require('../assets/sushi.jpg') },
-    { name: 'YUGTO', description: 'USER PERSONA', image: require('../assets/sushi.jpg') },
+    { name: 'MONTALBO', description: 'UX DESIGN PRINCIPLES', image: require('../assets/a5.jpg') },
+    { name: 'PANTALEON', description: 'LAZY LINKING PROTOTYPE', image: require('../assets/a1.jpg') },
+    { name: 'QUILBIO', description: '60-30-10', image: require('../assets/a4.jpg') },
+    { name: 'QUINDOZA', description: 'TYPOGRAPHY', image: require('../assets/a3.jpg') },
+    { name: 'SECUYA', description: 'COLOR THEORY', image: require('../assets/a2.jpg') },
+    { name: 'YUGTO', description: 'USER PERSONA', image: require('../assets/a6.jpg') },
   ];
 
   return (

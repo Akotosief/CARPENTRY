@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { View, TouchableOpacity, Text, TextInput, StyleSheet, Alert, Platform, SafeAreaView, KeyboardAvoidingView, Image } from "react-native";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../firebaseConfig";
 import { useFonts } from "expo-font";
 import Ionicons from "react-native-vector-icons/Ionicons";
 

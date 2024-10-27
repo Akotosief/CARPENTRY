@@ -13,38 +13,38 @@ function HomeScreen() {
   const libraryItems = [
     {
       id: 1,
-      homeImage: require('../assets/ramen.jpg'),
-      detailImage: require('../assets/ef.png'),
+      homeImage: require('../assets/c1.jpg'),
+      detailImage: require('../assets/mo1.jpg'),
       introduction: 'Introduction for library item 1: A delicious ramen dish.',
     },
     {
       id: 2,
-      homeImage: require('../assets/ramen.jpg'),
-      detailImage: require('../assets/mcdo.jpg'),
+      homeImage: require('../assets/c2.jpg'),
+      detailImage: require('../assets/mo2.jpg'),
       introduction: 'Introduction for library item 2: A spicy ramen experience.',
     },
     {
       id: 3,
-      homeImage: require('../assets/ramen.jpg'),
-      detailImage: require('../assets/ef.png'),
+      homeImage: require('../assets/c3.jpg'),
+      detailImage: require('../assets/mo3.jpg'),
       introduction: 'Introduction for library item 3: A vegetarian ramen option.',
     },
     {
       id: 4,
-      homeImage: require('../assets/ramen.jpg'),
-      detailImage: require('../assets/mcdo.jpg'),
+      homeImage: require('../assets/c4.jpg'),
+      detailImage: require('../assets/mo4.jpg'),
       introduction: 'Introduction for library item 4: A rich and creamy broth.',
     },
     {
       id: 5,
-      homeImage: require('../assets/ramen.jpg'),
-      detailImage: require('../assets/ef.png'),
+      homeImage: require('../assets/c5.jpg'),
+      detailImage: require('../assets/mo5.jpg'),
       introduction: 'Introduction for library item 5: A ramen dish with seafood.',
     },
     {
       id: 6,
-      homeImage: require('../assets/ramen.jpg'),
-      detailImage: require('../assets/mcdo.jpg'),
+      homeImage: require('../assets/c6.jpg'),
+      detailImage: require('../assets/mo6.jpg'),
       introduction: 'Introduction for library item 6: A classic tonkotsu ramen.',
     },
   ];
@@ -63,6 +63,16 @@ function HomeScreen() {
           <Text style={styles.welcomeText}>Welcome {username}!</Text>
         </View>
 
+        <View style={styles.contentContainer}>
+          <Image source={require('../assets/logo.jpg')} style={styles.image} />
+          <Text style={styles.text}>
+          The TLE Carpentry mobile app is designed
+to assist carpenters and woodworking
+enthusiasts in enhancing their skills and
+managing their projects more efficiently.
+          </Text>
+        </View>
+      
         {/* Library Section with Dynamic Items */}
         {libraryItems.map(item => (
           <View key={item.id} style={styles.library}>
@@ -72,13 +82,13 @@ function HomeScreen() {
               <View style={styles.textContainer}>
                 <Text style={styles.definition}>{item.introduction}</Text>
                 <View style={styles.readContainer}>
-                  <TouchableOpacity
-                    onPress={() =>
-                      navigation.navigate('Details', {
-                        introduction: item.introduction,
-                        image: item.detailImage,
-                      })
-                    }
+                <TouchableOpacity
+  onPress={() =>
+    navigation.navigate('Details', {
+      id: item.id, // Pass the item ID
+      image: item.detailImage,
+    })
+  }
                     style={styles.morebutton}
                   >
                     <Text style={styles.readText}>Read More</Text>
@@ -90,28 +100,16 @@ function HomeScreen() {
         ))}
 
         {/* Additional Content */}
-        <View style={styles.contentContainer}>
-          <Image source={require('../assets/ramen.jpg')} style={styles.image} />
-          <Text style={styles.text}>
-            Physical education is a vital part of our lives. It helps us develop our physical skills, achieve our fitness goals, and live a healthy lifestyle.
-          </Text>
-        </View>
-        <View style={styles.contentContainer}>
-          <Image source={require('../assets/mcdo.jpg')} style={styles.image} />
-          <Text style={styles.text}>
-            In addition to these benefits, physical education also helps us build our social skills, as it provides us with the opportunity to interact with others.
-          </Text>
-        </View>
+       
+      
 
         {/* Activities Section */}
-        <ActivitiesSection title="Team Sports" images={[require('../assets/ef.png'), require('../assets/ef.png'), require('../assets/ef.png')]} />
-        <ActivitiesSection title="Individual Sports" images={[require('../assets/mcdo.jpg'), require('../assets/mcdo.jpg'), require('../assets/mcdo.jpg')]} />
-        <ActivitiesSection title="Exercise" images={[require('../assets/ramen.jpg'), require('../assets/ramen.jpg'), require('../assets/ramen.jpg')]} />
+        <ActivitiesSection title="Team Sports" images={[require('../assets/t1.jpg'), require('../assets/t2.jpg'), require('../assets/t3.jpg')]} />
       </ScrollView>
 
       {/* Fixed Button Container */}
       <View style={styles.buttonContainer}>
-        <TouchableOpacity onPress={() => navigation.navigate('Login')} style={styles.button}>
+        <TouchableOpacity onPress={() => navigation.navigate('LoginScreen')} style={styles.button}>
           <Text style={styles.buttonText}>Log out</Text>
         </TouchableOpacity>
         <View style={{ width: 20 }} />

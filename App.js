@@ -135,9 +135,9 @@ const AppContainer = () => {
         }}
       >
         <Stack.Screen name="GetStarted" component={GetStartedScreen} />
-        <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen name="LoginScreen" component={LoginScreen} />
         <Stack.Screen name="SignupScreen" component={SignupScreen} />
-        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="HomeScreen" component={HomeScreen} />
         <Stack.Screen name="AboutUs" component={AboutScreen} />
         <Stack.Screen name="Details" component={DetailsScreen} />
 
